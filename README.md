@@ -19,7 +19,8 @@ cd Script-Slideshow-Generator
 pip install -r requirements.txt
 streamlit run app/ui.py
 
-## Connect with Me
+```
+## 👤 Connect with Me
 
-- [LinkedIn: Aryan Kumar](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
 
