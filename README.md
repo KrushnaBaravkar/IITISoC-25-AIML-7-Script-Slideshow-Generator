@@ -21,4 +21,5 @@ streamlit run app/ui.py
 
 ## 👤 Connect with Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
+- [LinkedIn: Aryan Kumar](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
+
