@@ -6,7 +6,7 @@
 - 📜 Generate scripts based on topic, audience, tone
 - 🧠 Powered by Hugging Face Transformers
 - 🖼 Converts content to PowerPoint slides
-- 🎛 Interactive UI with Streamlit
+- 🎛 Interactive UI with Streamlit.
 
 ## Demo
 _Add screenshots or a short GIF/video here_
