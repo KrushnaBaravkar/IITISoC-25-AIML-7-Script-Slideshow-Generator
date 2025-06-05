@@ -18,6 +18,7 @@ git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Genera
 cd Script-Slideshow-Generator
 pip install -r requirements.txt
 streamlit run app/ui.py
+```
 
 ## TimeLine
 
@@ -55,7 +56,7 @@ Working on user interface(UI).
   -If the user clicks "Edit", they can modify the text in the PowerPoint.
 
 - 
-```
+
 ## 👤 Connect with Me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
