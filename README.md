@@ -38,7 +38,7 @@ Working on user interface(UI).
   -When clicked, the button passes the input to a script generator.
 
 2.Script Generation Process:
-  -While the script is being generated, the application displays a loading symbol (e.g., a spinning animation).
+  -While the script is being generated, the application displays a loading symbol (e.g., a spinning animation)
   -Once the script is ready, it shows two options:
      -Extract Script
      -Create PPT
