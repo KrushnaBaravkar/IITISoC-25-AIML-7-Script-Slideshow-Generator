@@ -1,6 +1,5 @@
-
 import streamlit as st
-from generator import scrept_generator
+from scrept_generator import generator
 
 # --- INPUT MODULE ---
 st.title("📝 Script & PPT Generator")
