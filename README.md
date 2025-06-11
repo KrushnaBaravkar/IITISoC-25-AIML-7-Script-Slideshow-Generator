@@ -12,7 +12,8 @@
 _Add screenshots or a short GIF/video here_
 
 ## Setup
-
+- locally install llama3.2 in laptop
+  
 ```bash
 git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Generator.git
 cd IITISoC-25-AIML-7-Script-Slideshow-Generator
