@@ -16,6 +16,7 @@ _Add screenshots or a short GIF/video here_
 ```bash
 git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Generator.git
 cd IITISoC-25-AIML-7-Script-Slideshow-Generator
+python -m venv venv
 pip install -r requirements.txt
 uvx streamlit run app/ui.py
 ```
