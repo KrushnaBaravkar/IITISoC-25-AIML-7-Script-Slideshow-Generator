@@ -15,9 +15,9 @@ _Add screenshots or a short GIF/video here_
 
 ```bash
 git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Generator.git
-cd Script-Slideshow-Generator
+cd IITISoC-25-AIML-7-Script-Slideshow-Generator
 pip install -r requirements.txt
-streamlit run app/ui.py
+uvx streamlit run app/ui.py
 ```
 
 ## TimeLine
