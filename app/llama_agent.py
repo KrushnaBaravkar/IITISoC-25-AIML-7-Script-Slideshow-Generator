@@ -1,7 +1,7 @@
 import openai
 import streamlit as st
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets.get("OPENAI_API_KEY",None)
 
 def generate_script_with_openai(prompt):
     try:
