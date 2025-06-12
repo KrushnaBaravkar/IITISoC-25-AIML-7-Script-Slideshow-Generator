@@ -1,5 +1,5 @@
 import streamlit as st
-from llama_agent import script_generator
+from llama_agent import generate_script_with_openai
 
 st.title("🎤 Script & Slideshow Generator")
 st.divider()
