@@ -1,23 +1,17 @@
-import requests
-import json
+import openai
+import streamlit as st
 
-def script_generator(prompt):
-    url = "http://localhost:11434/api/chat"
+OPENAI_API_KEY = "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"
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-    payload = {
-        "model": "llama3.2",  # Or "llama3.2" if that's your model name
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
-        "stream": False  # Disable streaming for simplicity
-    }
-
+def generate_script_with_openai(prompt):
     try:
-        response = requests.post(url, json=payload)
-        if response.status_code == 200:
-            data = response.json()
-            return data["message"]["content"]
-        else:
-            return f"Error {response.status_code}: {response.text}"
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # or "gpt-4"
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
+        )
+        return response['choices'][0]['message']['content']
     except Exception as e:
-        return f"Exception occurred: {e}"
+        return f"OpenAI Error: {e}"
+
