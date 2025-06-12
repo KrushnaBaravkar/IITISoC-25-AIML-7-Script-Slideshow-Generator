@@ -19,7 +19,7 @@ if st.button("🧠 Generate Prompt"):
     st.write(prompt)
     
     with st.spinner("LLaMA is generating your script..."):
-        result = script_generator(prompt)  # 🔥 Calling your API function
+        result =generate_script_with_openai(prompt)  # 🔥 Calling your API function
 
     # Simulated Output
     st.subheader("📝 Script Output (Placeholder)")
