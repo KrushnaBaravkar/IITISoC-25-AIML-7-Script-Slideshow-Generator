@@ -13,6 +13,7 @@ _Add screenshots or a short GIF/video here_
 
 ## Setup
 - locally install llama3.2 in laptop
+- after cloning the repo import it to vs code workspace, install all required libraries with the help of following commands and try to run ui.py file after sourcing the terminal
   
 ```bash
 git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Generator.git
