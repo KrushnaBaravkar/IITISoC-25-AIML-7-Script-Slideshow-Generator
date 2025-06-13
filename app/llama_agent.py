@@ -1,23 +1,24 @@
-import streamlit as st
 import requests
+import json
 
-def generate_script_with_huggingface(prompt):
-    API_URL = "https://api-inference.huggingface.co/models/OpenAssistant/oasst-sft-6-llama-30b-xor"
-    headers = {"Authorization": f"Bearer {st.secrets['HF_API_KEY']}"}
+def script_generator(prompt):
+    url = "http://localhost:11434/api/chat"
 
     payload = {
-        "inputs": prompt,
-        "parameters": {
-            "temperature": 0.7,
-            "max_new_tokens": 700,
-            "do_sample": True
-        }
+        "model": "llama3.2",  # Or "llama3.2" if that's your model name
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "stream": False  # Disable streaming for simplicity
     }
 
-    response = requests.post(API_URL, headers=headers, json=payload)
+    try:
+        response = requests.post(url, json=payload)
+        if response.status_code == 200:
+            data = response.json()
+            return data["message"]["content"]
+        else:
+            return f"Error {response.status_code}: {response.text}"
+    except Exception as e:
+        return f"Exception occurred: {e}"
 
-    if response.status_code == 200:
-        result = response.json()
-        return result[0]["generated_text"]
-    else:
-        return f"❌ Hugging Face API Error: {response.status_code} – {response.text}"
