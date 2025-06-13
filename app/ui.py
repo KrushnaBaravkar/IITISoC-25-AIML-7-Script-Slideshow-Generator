@@ -1,5 +1,5 @@
 import streamlit as st
-from llama_agent import generate_script_with_huggingface
+from hugging_agent import generate_script_with_huggingface
 
 st.title("🎤 Script & Slideshow Generator")
 st.divider()
