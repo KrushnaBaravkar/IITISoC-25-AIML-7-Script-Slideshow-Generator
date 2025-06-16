@@ -1,6 +1,7 @@
 import os
 import pptx
 import comtypes.client
+import pythoncom
 
 def slide_generation(arr):
     # Load template
@@ -51,12 +52,22 @@ def slide_generation(arr):
     presentation.save(pptx_path)
     print(f"✅ Presentation saved at: {pptx_path}")
 
-    # Convert to PDF
-    def convert_pptx_to_pdf(pptx_path, pdf_path):
-        powerpoint = comtypes.client.CreateObject("PowerPoint.Application")
-        deck = powerpoint.Presentations.Open(pptx_path, WithWindow=False)
-        deck.SaveAs(pdf_path, 32)  # 32 = PDF
-        deck.Close()
-        powerpoint.Quit()
 
-    convert_pptx_to_pdf(pptx_path, "pdf_folder/output_pdf.pdf")
+    #def convert_pptx_to_pdf(input_path, output_path):
+    # Initialize COM for the current thread
+       #pythoncom.CoInitialize()
+
+       ##try:
+           #powerpoint = comtypes.client.CreateObject("PowerPoint.Application")
+           #powerpoint.Visible = 1
+
+          # presentation = powerpoint.Presentations.Open(input_path, WithWindow=False)
+         #  presentation.SaveAs(output_path, 32)  # 32 is for PDF
+        #   presentation.Close()
+       #    powerpoint.Quit()
+      # finally:
+           # Uninitialize COM
+     #      pythoncom.CoUninitialize()
+    #pdf_path = os.path.join("pdf_folder", "output_pdf.pdf")
+   # convert_pptx_to_pdf(pptx_path,pdf_path)
+

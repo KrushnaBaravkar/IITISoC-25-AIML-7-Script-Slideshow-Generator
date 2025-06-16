@@ -30,11 +30,12 @@ def generate_slide_array(script):
 
     prompt = f"""
 You are a helpful assistant that converts lecture or presentation scripts into slide content.
-Given the following script, extract exactly 9 slides. Each slide should be represented as an array of two elements:
+Given the following script, extract exactly 9 slides. Each slide should be represented as a list of two elements:
 
 ["Slide Title", "Slide Body Content"]
 
-Follow this format and output a 2D JSON array containing 9 items, one for each slide. Keep the title concise (3–6 words) and the content brief and informative (1–3 bullet points or 1 paragraph max). Avoid including slide numbers or extra formatting. Do not write an introduction or explanation.
+Follow this format and output a 2D JSON array containing 9 items, one for each slide.
+Avoid introductory comments or formatting. Output only valid JSON.
 
 SCRIPT:
 {script}
@@ -43,10 +44,8 @@ Now generate the 9-slide array:
 """
 
     payload = {
-        "model": "llama3.2",  # Adjust to your model name
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
+        "model": "llama3.2",
+        "messages": [{"role": "user", "content": prompt}],
         "stream": False
     }
 
@@ -54,15 +53,30 @@ Now generate the 9-slide array:
         response = requests.post(url, json=payload)
         if response.status_code == 200:
             data = response.json()
-            raw_content = data["message"]["content"]
-            try:
-                arr= json.loads(raw_content)
-            except json.JSONDecodeError:
-                return ast.literal_eval(raw_content)
-        else:
-            return f"Error {response.status_code}: {response.text}"
-    except Exception as e:
-        return f"Exception occurred: {e}"
+            raw = data["message"]["content"].strip()
 
-print("arr:", arr)
-print("type(arr[0]):", type(arr[0]))
+            # Try JSON parsing
+            try:
+                parsed = json.loads(raw)
+            except json.JSONDecodeError:
+                parsed = ast.literal_eval(raw)
+
+            # Validate structure
+            if (
+                isinstance(parsed, list) and
+                len(parsed) == 9 and
+                all(isinstance(slide, list) and len(slide) == 2 for slide in parsed)
+            ):
+                return parsed
+            else:
+                raise ValueError("Response structure is not a 2D array of 9 [title, content] pairs.")
+
+        else:
+            raise RuntimeError(f"Ollama API Error {response.status_code}: {response.text}")
+
+    except Exception as e:
+        print("❌ Unexpected structure returned from LLM:")
+        print(e)
+        return [["Error", "Failed to generate slide content. Please try again."]] * 9
+
+

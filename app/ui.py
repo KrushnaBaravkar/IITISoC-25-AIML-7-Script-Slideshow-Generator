@@ -69,9 +69,9 @@ if st.session_state.script:
                 pptx_bytes = f.read()
             st.download_button("⬇️ Download Slides (.pptx)", data=pptx_bytes, file_name="slides.pptx", mime="application/vnd.openxmlformats-officedocument.presentationml.presentation")
 
-        if os.path.exists(pdf_path):
-            with open(pdf_path, "rb") as f:
-                base64_pdf = base64.b64encode(f.read()).decode("utf-8")
-            st.markdown("### 📄 PDF Preview")
-            st.markdown(f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>', unsafe_allow_html=True)
-            st.download_button("⬇️ Download PDF", data=base64.b64decode(base64_pdf), file_name="slides.pdf", mime="application/pdf")
+        # if os.path.exists(pdf_path):
+          #  with open(pdf_path, "rb") as f:
+          #      base64_pdf = base64.b64encode(f.read()).decode("utf-8")
+           # st.markdown("### 📄 PDF Preview")
+            # st.markdown(f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>', unsafe_allow_html=True)
+            # st.download_button("⬇️ Download PDF", data=base64.b64decode(base64_pdf), file_name="slides.pdf", mime="application/pdf")
