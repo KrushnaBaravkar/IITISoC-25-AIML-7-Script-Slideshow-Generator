@@ -56,10 +56,13 @@ Now generate the 9-slide array:
             data = response.json()
             raw_content = data["message"]["content"]
             try:
-                return json.loads(raw_content)
+                arr= json.loads(raw_content)
             except json.JSONDecodeError:
                 return ast.literal_eval(raw_content)
         else:
             return f"Error {response.status_code}: {response.text}"
     except Exception as e:
         return f"Exception occurred: {e}"
+
+print("arr:", arr)
+print("type(arr[0]):", type(arr[0]))
