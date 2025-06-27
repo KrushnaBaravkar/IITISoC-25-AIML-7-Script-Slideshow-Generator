@@ -39,13 +39,28 @@ def slide_generation(arr):
                     return
 
     # Slide 1
-    update_text_of_textbox(presentation, 1, 1, arr[0][0])
-    update_text_of_textbox(presentation, 1, 3, arr[0][1])
+    raw_content1 = arr[0][0]
+    if isinstance(raw_content1, list):
+      raw_content1 = "\n".join(str(line) for line in raw_content1)
+    update_text_of_textbox(presentation, 1, 3, raw_content1)
 
-    # Slide 2–9
+    raw_content2 = arr[0][1]
+    if isinstance(raw_content2, list):
+       raw_content2 = "\n".join(str(line) for line in raw_content2)
+    update_text_of_textbox(presentation, 1, 4, raw_content2)
+
+    # Slides 2 to 9
     for slide in range(2, 10):
-        for text_box_id in range(3, 5):
-            update_text_of_textbox(presentation, slide, text_box_id, arr[slide - 1][text_box_id - 3])
+       for text_box_id in range(3, 5):
+         try:
+             raw_content = arr[slide - 1][text_box_id - 3]
+             if isinstance(raw_content, list):
+                raw_content = "\n".join(str(line) for line in raw_content)
+             update_text_of_textbox(presentation, slide, text_box_id, raw_content)
+         except IndexError:
+            print(f"Missing content for Slide {slide}, Box {text_box_id}")
+
+
 
     # Save presentation
     pptx_path = os.path.join("powerpoints", "generated_presentation.pptx")
