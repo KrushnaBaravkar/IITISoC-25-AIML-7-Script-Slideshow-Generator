@@ -42,12 +42,12 @@ def slide_generation(arr):
     raw_content1 = arr[0][0]
     if isinstance(raw_content1, list):
       raw_content1 = "\n".join(str(line) for line in raw_content1)
-    update_text_of_textbox(presentation, 1, 3, raw_content1)
+    update_text_of_textbox(presentation, 1, 1, raw_content1)
 
     raw_content2 = arr[0][1]
     if isinstance(raw_content2, list):
        raw_content2 = "\n".join(str(line) for line in raw_content2)
-    update_text_of_textbox(presentation, 1, 4, raw_content2)
+    update_text_of_textbox(presentation, 1, 3, raw_content2)
 
     # Slides 2 to 9
     for slide in range(2, 10):
