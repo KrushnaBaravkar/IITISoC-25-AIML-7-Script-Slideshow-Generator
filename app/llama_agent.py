@@ -39,7 +39,7 @@ Your task is to:
 - No preamble, explanation, markdown, or formatting — just raw JSON.
 - Keep titles short (3–6 words) and body content in 1–2 bullet points or 1 paragraph.
 - DO NOT write anything else except the JSON array.
-
+- Each slide content should contain around 15-20 words.(means array[slide_num][1]=text, words in text should around 15-20 according to title of slide ) 
 SCRIPT:
 {script}
 
