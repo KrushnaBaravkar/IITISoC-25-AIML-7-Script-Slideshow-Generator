@@ -1,20 +1,22 @@
 import os
 import pptx
-import comtypes.client
-import pythoncom
+from datetime import datetime
+from pptx.dml.color import RGBColor
 
-def slide_generation(arr):
-    # Load template
-    presentation = pptx.Presentation(os.path.join("powerpoints", "input.pptx"))
 
-    def update_text_of_textbox(presentation, slide, text_box_id, new_text):
-        slide = presentation.slides[(slide - 1)]
+def slide_generation(arr, template_type):
+    # Load the base presentation
+    presentation = pptx.Presentation(os.path.join("powerpoints", f"{template_type}.pptx"))
+
+    def update_text_of_textbox(presentation, slide_num, text_box_id, new_text):
+        slide = presentation.slides[slide_num - 1]
         count = 0
         for shape in slide.shapes:
-            if shape.has_text_frame and shape.text:
+            if shape.has_text_frame and shape.text.strip():
                 count += 1
                 if count == text_box_id:
                     text_frame = shape.text_frame
+                    print(f"[Slide {slide_num}] Box {count}: '{shape.text.strip()}'")
                     first_paragraph = text_frame.paragraphs[0]
                     first_run = first_paragraph.runs[0] if first_paragraph.runs else first_paragraph.add_run()
 
@@ -22,67 +24,96 @@ def slide_generation(arr):
                     font = first_run.font
                     font_name, font_size = font.name, font.size
                     font_bold, font_italic = font.bold, font.italic
-                    font_underline, font_color = font.underline, font.color.rgb
+                    # Save existing font styles if needed
+                    font_underline = font.underline
+                    try:
+                        font_color = font.color.rgb
+                    except:
+                        font_color = None
 
-                    # Clear and set new text
-                    text_frame.clear()
-                    new_run = text_frame.paragraphs[0].add_run()
-                    new_run.text = new_text
+                    try:
+                        # Clear and set new text
+                        text_frame.clear()
+                        new_run = text_frame.paragraphs[0].add_run()
+                        if not isinstance(new_text, str):
+                            new_text = str(new_text)
+                        new_run.text = new_text
+                    
+                        print(f"📝 Updating Slide {slide_num}, Box {text_box_id} → Text: {new_text[:30]}...")
 
-                    # Reapply formatting
-                    new_run.font.name = font_name
-                    new_run.font.size = font_size
-                    new_run.font.bold = font_bold
-                    new_run.font.italic = font_italic
-                    new_run.font.underline = font_underline
-                    new_run.font.color.rgb = font_color
+                        # Reapply formatting
+                        new_run.font.name = font_name
+                        new_run.font.size = font_size
+                        new_run.font.bold = font_bold
+                        new_run.font.italic = font_italic
+                        new_run.font.underline = font_underline
+                        if font_color:
+                            try:
+                                if isinstance(font_color, RGBColor):
+                                    new_run.font.color.rgb = font_color
+                                elif isinstance(font_color, tuple) and len(font_color) == 3:
+                                    new_run.font.color.rgb = RGBColor(*font_color)
+                            except Exception as e:
+                                print(f"⚠️ Font color issue: {e}")
+                    except Exception as e:
+                        print(f"❌ Failed to update text: {e}")        
                     return
 
-    # Slide 1
-    raw_content1 = arr[0][0]
-    if isinstance(raw_content1, list):
-      raw_content1 = "\n".join(str(line) for line in raw_content1)
-    update_text_of_textbox(presentation, 1, 1, raw_content1)
+    # Define textbox mappings for each template
+    template_mappings = {
+        "template1": {1: [1, 3], **{i: [3, 4] for i in range(2, 10)}},
+        "template2": {
+            1: [1, 4],
+            2: [3, 1],
+            3: [1, 3],
+            4: [2, 3],
+            5: [1, 2],
+            6: [1, 3],
+            7: [1, 3],
+            8: [1, 3],
+            9: [2, 3]
+        },
+        "template3": {1: [2, 3], **{i: [1, 2] for i in range(2, 10)}}
+    }
 
-    raw_content2 = arr[0][1]
-    if isinstance(raw_content2, list):
-       raw_content2 = "\n".join(str(line) for line in raw_content2)
-    update_text_of_textbox(presentation, 1, 3, raw_content2)
+    if template_type not in template_mappings:
+        raise ValueError(f"❌ Unknown template type: {template_type}")
 
-    # Slides 2 to 9
-    for slide in range(2, 10):
-       for text_box_id in range(3, 5):
-         try:
-             raw_content = arr[slide - 1][text_box_id - 3]
-             if isinstance(raw_content, list):
-                raw_content = "\n".join(str(line) for line in raw_content)
-             update_text_of_textbox(presentation, slide, text_box_id, raw_content)
-         except IndexError:
-            print(f"Missing content for Slide {slide}, Box {text_box_id}")
+    mapping = template_mappings[template_type]
+
+    # Fill slides based on the selected template mapping
+    for slide_num in range(1, min(len(arr), 9) + 1):
+        text_box_ids = mapping.get(slide_num, [])
+        slide_data = arr[slide_num - 1]
+    
+        if len(text_box_ids) != 2:
+            print(f"⚠️ Slide {slide_num} mapping should have 2 box IDs but found {len(text_box_ids)}")
+            continue
+
+        title_box_id, content_box_id = text_box_ids
+
+        try:
+            # Update title
+            title_text = slide_data[0]
+            update_text_of_textbox(presentation, slide_num, title_box_id, title_text)
+
+            # Update content
+            content_text = slide_data[1]
+            if isinstance(content_text, list):
+                content_text = "\n".join(str(line) for line in content_text)
+            update_text_of_textbox(presentation, slide_num, content_box_id, content_text)
+    
+        except IndexError as e:
+            print(f"⚠️ Slide {slide_num} content missing: {e}")
 
 
+    # Save the updated presentation
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    pptx_filename = f"generated_presentation_{timestamp}.pptx"
+    pptx_path = os.path.join("powerpoints", pptx_filename)
 
-    # Save presentation
-    pptx_path = os.path.join("powerpoints", "generated_presentation.pptx")
     presentation.save(pptx_path)
     print(f"✅ Presentation saved at: {pptx_path}")
 
 
-    #def convert_pptx_to_pdf(input_path, output_path):
-    # Initialize COM for the current thread
-       #pythoncom.CoInitialize()
-
-       ##try:
-           #powerpoint = comtypes.client.CreateObject("PowerPoint.Application")
-           #powerpoint.Visible = 1
-
-          # presentation = powerpoint.Presentations.Open(input_path, WithWindow=False)
-         #  presentation.SaveAs(output_path, 32)  # 32 is for PDF
-        #   presentation.Close()
-       #    powerpoint.Quit()
-      # finally:
-           # Uninitialize COM
-     #      pythoncom.CoUninitialize()
-    #pdf_path = os.path.join("pdf_folder", "output_pdf.pdf")
-   # convert_pptx_to_pdf(pptx_path,pdf_path)
 
