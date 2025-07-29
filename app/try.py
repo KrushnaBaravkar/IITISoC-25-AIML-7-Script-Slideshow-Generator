@@ -1,17 +1,18 @@
 import pptx
 import os
-import requests
-import json
 
-presentation = pptx.Presentation(os.path.join("powerpoints", "template3.pptx"))
+def list_all_textboxes_with_names(pptx_path):
+    presentation = pptx.Presentation(pptx_path)
+    
+    for slide_num, slide in enumerate(presentation.slides, start=1):
+        print(f"\n🔹 Slide {slide_num}:")
+        count = 0
+        for shape in slide.shapes:
+            if shape.has_text_frame:
+                count += 1
+                text_preview = shape.text.strip().replace("\n", " ")[:50]
+                print(f"  [{count}] Shape Name: '{shape.name}' | Text: '{text_preview}'")
 
-def list_text_boxes(presentation, slide_num):
-    slide = presentation.slides[slide_num-1]
-    text_boxes = []
-    for shape in slide.shapes:
-        if shape.has_text_frame and shape.text:
-            text_boxes.append(shape.text)
-    return text_boxes
-
-for idx, text in enumerate(list_text_boxes(presentation,9), 1):
-   print(f"Text Box {idx}: {text}")
+# Example usage
+pptx_path = os.path.join("powerpoints", "template2.pptx")
+list_all_textboxes_with_names(pptx_path)
