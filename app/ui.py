@@ -3,7 +3,7 @@ import base64
 import os
 
 from llama_agent import script_generator, generate_slide_array
-from slide_maker import slide_generation
+from slide_maker import slide_generation_1, slide_generation_2
 
 st.title("🎤 Script & Slideshow Generator")
 st.divider()
@@ -70,7 +70,10 @@ if st.session_state.script:
     if st.button("🧩 Convert to Slides"):
         with st.spinner("Creating slides from script..."):
             arr = generate_slide_array(st.session_state.script)
-            slide_generation(arr, template_type)
+            if template_type=="template1" or template_type=="template3":
+                slide_generation_1(arr, template_type)
+            else:
+                slide_generation_2(arr,template_type)
             st.session_state.ppt_generated = True
             st.success("✅ Slides generated successfully!")
 
@@ -80,3 +83,4 @@ if st.session_state.script:
             with open(pptx_path, "rb") as f:
                 pptx_bytes = f.read()
             st.download_button("⬇️ Download Slides (.pptx)", data=pptx_bytes, file_name="slides.pptx", mime="application/vnd.openxmlformats-officedocument.presentationml.presentation")
+
