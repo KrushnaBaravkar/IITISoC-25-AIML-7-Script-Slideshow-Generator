@@ -125,8 +125,10 @@ streamlit run app/ui.py
 **Krushna baravkar**
 
 - 👨‍🎓 B.Tech - Mechanical Engineering, IIT Indore
-- 💡 Interested in AI, and robotics.
+- 💡 Interested in AI and ML, robotics.
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/krushna-baravkar-182299353/)
+
 ---
 
 ## 📃 License
