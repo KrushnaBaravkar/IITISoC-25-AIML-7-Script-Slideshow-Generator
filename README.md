@@ -18,7 +18,7 @@ A powerful, user-friendly AI tool that automatically generates educational **scr
 
 ## 🖥 Demo
 
-> _Coming Soon_: GIFs or screen recordings of the end-to-end usage (UI → script → slide → export)
+[![Watch the video](https://img.youtube.com/vi/MNnjGcmR7SM/hqdefault.jpg)](https://www.youtube.com/watch?v=MNnjGcmR7SM)
 
 ---
 
