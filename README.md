@@ -71,15 +71,6 @@ uvicorn streamlit run app/ui.py
 
 ---
 
-## 📅 Development Timeline
-
-### Week 1 – UI Development with Streamlit
-
-- Created a responsive Streamlit app for user interaction
-- Key reasons for choosing Streamlit:
-  - Python-native and beginner-friendly
-  - Fast prototyping with minimal setup
-  - Widely used in ML/AI applications
 
 ### Application Workflow:
 
@@ -112,7 +103,6 @@ uvicorn streamlit run app/ui.py
 | Ollama + LLaMA 3.2| Local LLM inference                      |
 | python-pptx       | PowerPoint automation                    |
 | LangChain         | LLM orchestration (optional backend)     |
-| ChromaDB          | Versioning & memory (advanced use case)  |
 
 ---
 
@@ -128,11 +118,14 @@ uvicorn streamlit run app/ui.py
 **Aryan Kumar**
 
 - 👨‍🎓 B.Tech - Mechanical Engineering, IIT Indore
-- 💼 Mentor @ IITISoC 2025
-- 💡 Interested in AI, automation, and system design
+- 💡 Interested in AI, robotics, automation, and system design
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
 
+**Krushna baravkar**
+
+-- 👨‍🎓 B.Tech - Mechanical Engineering, IIT Indore
+- 💡 Interested in AI, and robotics.
 ---
 
 ## 📃 License
