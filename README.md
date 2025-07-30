@@ -1,67 +1,140 @@
-# Script & Slideshow Generator
 
-🚀 A user-friendly AI tool that generates structured educational scripts and slideshows using open-source NLP models like T5 or GPT-J.
+# 📚 Script & Slideshow Generator
 
-## Features
-- 📜 Generate scripts based on topic, audience, tone
-- 🧠 Powered by Hugging Face Transformers
-- 🖼 Converts content to PowerPoint slides
-- 🎛 Interactive UI with Streamlit.
+A powerful, user-friendly AI tool that automatically generates educational **scripts** and corresponding **PowerPoint presentations** based on your input. Built with **Streamlit** for an intuitive interface, and powered by open-source large language models like **LLaMA 3.2**, this project is perfect for educators, students, and content creators.
 
-## Demo
-_Add screenshots or a short GIF/video here_
+---
 
-## Setup
-- locally install llama3.2 in laptop
-- after cloning the repo import it to vs code workspace, install all required libraries with the help of following commands and try to run ui.py file after sourcing the terminal
-  
+## 🔧 Features
+
+- 🎯 **Topic-Based Script Generation**: Generate educational scripts based on topic, tone, and target audience.
+- 🤖 **Powered by Local LLaMA 3.2**: Efficient and private inference using `Ollama` and `transformers`.
+- 🧠 **Intelligent Slide Structuring**: Automatically splits the script into slide-sized chunks with title and content.
+- 📊 **PowerPoint Export**: Export slides as `.pptx` and optionally as `.pdf`.
+- 🛠 **Interactive UI**: Built with **Streamlit**, requiring no coding knowledge to use.
+- 📝 **Editable Presentations**: Users can modify the content before exporting.
+
+---
+
+## 🖥 Demo
+
+> _Coming Soon_: GIFs or screen recordings of the end-to-end usage (UI → script → slide → export)
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+- Python 3.10+
+- Install [Ollama](https://ollama.com/) to run LLaMA 3.2 locally
+- PowerPoint (optional, for viewing `.pptx` files)
+
+### 📦 Installation & Setup
+
+1. Clone the repository:
 ```bash
 git clone https://github.com/aryan6336/IITISoC-25-AIML-7-Script-Slideshow-Generator.git
 cd IITISoC-25-AIML-7-Script-Slideshow-Generator
-python -m venv venv
-pip install -r requirements.txt
-uvx streamlit run app/ui.py
 ```
 
-## TimeLine
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate     # On Windows: venv\Scripts\activate
+```
 
-### Week-1
-Working on user interface(UI).
-- want to creat WEB-APPLICATION to represent our model for fesable use.
-- following is the application overview which will be created using streamlit.
-- why streamlit?
-  - more easier to build than other methods.
-  - includes only python.
-  - mostly working with python developers.
-  - mostly used in data-science/ML field.
-- Application Workflow:
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-1.User Input & Button Creation:
-  -The application takes user input and creates a button.
-  -When clicked, the button passes the input to a script generator.
+4. Start the Streamlit app:
+```bash
+uvicorn streamlit run app/ui.py
+```
 
-2.Script Generation Process:
-  -While the script is being generated, the application displays a loading symbol (e.g., a spinning animation)
-  -Once the script is ready, it shows two options:
-     -Extract Script
-     -Create PPT
+---
 
-3.PPT Generation:
-  -If the user selects "Create PPT", the script is sent to PowerPoint (PPTX) to generate the presentation.
-  -During this process, the application shows a loading indicator.
+## 📁 Project Structure
 
-4.PPT Display & Options:
-  -Once the PPT is ready, the application displays the generated presentation.
-  -It provides two options at the bottom:
-     -Export
-     -Edit
+```bash
+├── app/
+│   ├── ui.py               # Streamlit user interface
+│   ├── llama_agent.py      # LLaMA3-based script & slide generation
+│   ├── slide_maker.py      # PPTX file generation & export logic
+│   └── templates/          # PPT templates for slide formatting
+├── powerpoints/            # Output folder for generated presentations
+├── requirements.txt        # Python dependencies
+├── README.md               # Project documentation
+```
 
-5.Editing Functionality:
-  -If the user clicks "Edit", they can modify the text in the PowerPoint.
+---
 
-- 
+## 📅 Development Timeline
 
-## 👤 Connect with Me
+### Week 1 – UI Development with Streamlit
+
+- Created a responsive Streamlit app for user interaction
+- Key reasons for choosing Streamlit:
+  - Python-native and beginner-friendly
+  - Fast prototyping with minimal setup
+  - Widely used in ML/AI applications
+
+### Application Workflow:
+
+1. **Input & Generation**
+   - User enters the topic, audience, and tone.
+   - Click “Generate Script” to invoke the LLaMA model via Ollama.
+
+2. **Script Output**
+   - After processing, the script appears in editable format.
+   - Users can preview or edit the content.
+
+3. **Slide Creation**
+   - On clicking “Create Slides”, the script is automatically structured into slides (title + content).
+   - Template-specific layout logic is applied.
+
+4. **Export Options**
+   - Users can choose to download the presentation as a `.pptx` or `.pdf`.
+
+5. **Live Editing**
+   - Each slide's content can be manually edited before exporting.
+
+---
+
+## 🧠 Technologies Used
+
+| Technology        | Purpose                                  |
+|-------------------|------------------------------------------|
+| Python            | Core language                            |
+| Streamlit         | UI development                           |
+| Ollama + LLaMA 3.2| Local LLM inference                      |
+| python-pptx       | PowerPoint automation                    |
+| LangChain         | LLM orchestration (optional backend)     |
+| ChromaDB          | Versioning & memory (advanced use case)  |
+
+---
+
+## ❗ Notes
+
+- This tool is designed for **local** use to ensure privacy and low latency.
+- You must have `Ollama` running with a locally available `llama3` model (3.2B or higher) for inference to work.
+
+---
+
+## 🙋‍♂️ Author
+
+**Aryan Kumar**
+
+- 👨‍🎓 B.Tech - Mechanical Engineering, IIT Indore
+- 💼 Mentor @ IITISoC 2025
+- 💡 Interested in AI, automation, and system design
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/)
 
+---
+
+## 📃 License
+
+This project is open-sourced under the [MIT License](LICENSE).
