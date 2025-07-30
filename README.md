@@ -126,7 +126,7 @@ streamlit run app/ui.py
 
 - 👨‍🎓 B.Tech - Mechanical Engineering, IIT Indore
 - 💡 Interested in AI, and robotics.
-[![LinkedIn]([https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/aryan-kumar-222b1531a/](https://www.linkedin.com/in/krushna-baravkar-182299353?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BXGoAxBmSSFOhQG6eCPRFRA%3D%3D))
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/krushna-baravkar-182299353/)
 ---
 
 ## 📃 License
