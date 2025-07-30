@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 4. Start the Streamlit app:
 ```bash
-uvicorn streamlit run app/ui.py
+streamlit run app/ui.py
 ```
 
 ---
