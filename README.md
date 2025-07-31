@@ -1,10 +1,14 @@
 
 # 📚 Script & Slideshow Generator
+## Project Overview (AI_ML Team 7)
 
 A powerful, user-friendly AI tool that automatically generates educational **scripts** and corresponding **PowerPoint presentations** based on your input. Built with **Streamlit** for an intuitive interface, and powered by open-source large language models like **LLaMA 3.2**, this project is perfect for educators, students, and content creators.
 
 ---
-
+# Team Member
+-Aryan Kumar(Roll No: -240003012)
+-Krushna Baravkar(Roll No: -240003017)
+---
 ## 🔧 Features
 
 - 🎯 **Topic-Based Script Generation**: Generate educational scripts based on topic, tone, and target audience.
