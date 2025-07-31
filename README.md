@@ -6,8 +6,8 @@ A powerful, user-friendly AI tool that automatically generates educational **scr
 
 ---
 # Team Member
--Aryan Kumar(Roll No: -240003012)
--Krushna Baravkar(Roll No: -240003017)
+* Aryan Kumar(Roll No: -240003012)
+* Krushna Baravkar(Roll No: -240003017)
 ---
 ## 🔧 Features
 
